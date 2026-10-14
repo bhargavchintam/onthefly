@@ -1,0 +1,148 @@
+{
+  "trips": [
+    {
+      "title": "Highlights of the United Kingdom",
+      "description": "A guided loop through England, Scotland, and Ireland. Start in London, ride the train north to Edinburgh, cross the Lake District and Wales, then finish in Ireland with the Ring of Kerry and the Cliffs of Moher.",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Tower_Bridge_from_Shad_Thames.jpg/500px-Tower_Bridge_from_Shad_Thames.jpg",
+      "num_days": 10,
+      "start_date": "2027-07-11",
+      "end_date": "2027-07-21",
+      "total_cost": 3899.0
+    },
+    {
+      "title": "A Week in Italy: Venice, Florence, and Rome",
+      "description": "Three cities, one week. Canals and palaces in Venice, Renaissance art in Florence, and ancient streets in Rome, with a train ride between each stop.",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Venice_Gondola_Grand_Canal.jpg/500px-Venice_Gondola_Grand_Canal.jpg",
+      "num_days": 7,
+      "start_date": "2027-03-01",
+      "end_date": "2027-03-08",
+      "total_cost": 2509.0
+    },
+    {
+      "title": "Egypt and Nile River Cruise",
+      "description": "Pyramids and the Sphinx in Giza, the temples of Luxor and Karnak, then four nights on the Nile between Luxor and Aswan with daily stops at ancient sites.",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Kheops-Pyramid.jpg/500px-Kheops-Pyramid.jpg",
+      "num_days": 12,
+      "start_date": "2027-04-30",
+      "end_date": "2027-05-11",
+      "total_cost": 3409.0
+    },
+    {
+      "title": "Ecuador and the Galapagos Islands",
+      "description": "Two days in colonial Quito, a stop at the equator line, then a week island-hopping in the Galapagos to see tortoises, sea lions, and blue-footed boobies up close.",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Galapagos_giant_tortoise%2C_head_%28Chelonoidis_niger_hoodensis%29.jpg/500px-Galapagos_giant_tortoise%2C_head_%28Chelonoidis_niger_hoodensis%29.jpg",
+      "num_days": 10,
+      "start_date": "2027-05-08",
+      "end_date": "2027-05-17",
+      "total_cost": 4879.0
+    }
+  ],
+  "destinations": [
+    {
+      "destination": "London",
+      "description": "Capital of England on the Thames. Museums, markets, and the start of the UK loop.",
+      "city": "London",
+      "country": "United Kingdom",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Tower_Bridge_from_Shad_Thames.jpg/500px-Tower_Bridge_from_Shad_Thames.jpg",
+      "flag_img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/500px-Flag_of_the_United_Kingdom_%283-5%29.svg.png"
+    },
+    {
+      "destination": "Edinburgh",
+      "description": "Scotland's medieval capital with a castle on the hill and the Royal Mile below it.",
+      "city": "Edinburgh",
+      "country": "United Kingdom",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Edinburgh_Castle_from_Princes_Street_-_geograph.org.uk_-_3188294.jpg/500px-Edinburgh_Castle_from_Princes_Street_-_geograph.org.uk_-_3188294.jpg",
+      "flag_img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/500px-Flag_of_the_United_Kingdom_%283-5%29.svg.png"
+    },
+    {
+      "destination": "Venice",
+      "description": "A city built on water. Gondolas, the Grand Canal, and St. Mark's Square.",
+      "city": "Venice",
+      "country": "Italy",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Venice_Gondola_Grand_Canal.jpg/500px-Venice_Gondola_Grand_Canal.jpg",
+      "flag_img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/500px-Flag_of_Italy.svg.png"
+    },
+    {
+      "destination": "Rome",
+      "description": "The Colosseum, the Forum, and the Vatican, all within walking distance of great food.",
+      "city": "Rome",
+      "country": "Italy",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/500px-Colosseo_2020.jpg",
+      "flag_img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/500px-Flag_of_Italy.svg.png"
+    },
+    {
+      "destination": "Giza",
+      "description": "Home of the Great Pyramid and the Sphinx, just outside Cairo.",
+      "city": "Giza",
+      "country": "Egypt",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Kheops-Pyramid.jpg/500px-Kheops-Pyramid.jpg",
+      "flag_img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Flag_of_Egypt.svg/500px-Flag_of_Egypt.svg.png"
+    },
+    {
+      "destination": "Santa Cruz Island",
+      "description": "The hub of the Galapagos, with the Charles Darwin Research Station and giant tortoises in the highlands.",
+      "city": "Puerto Ayora",
+      "country": "Ecuador",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Galapagos_giant_tortoise%2C_head_%28Chelonoidis_niger_hoodensis%29.jpg/500px-Galapagos_giant_tortoise%2C_head_%28Chelonoidis_niger_hoodensis%29.jpg",
+      "flag_img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Flag_of_Ecuador.svg/500px-Flag_of_Ecuador.svg.png"
+    }
+  ],
+  "activities": [
+    {
+      "trip": "Highlights of the United Kingdom",
+      "activity": "Tower of London tour",
+      "num_votes": 3
+    },
+    {
+      "trip": "Highlights of the United Kingdom",
+      "activity": "Hike Arthur's Seat",
+      "num_votes": 5
+    },
+    {
+      "trip": "A Week in Italy: Venice, Florence, and Rome",
+      "activity": "Gondola ride at sunset",
+      "num_votes": 4
+    },
+    {
+      "trip": "A Week in Italy: Venice, Florence, and Rome",
+      "activity": "Colosseum underground tour",
+      "num_votes": 2
+    },
+    {
+      "trip": "Egypt and Nile River Cruise",
+      "activity": "Hot air balloon over Luxor",
+      "num_votes": 6
+    },
+    {
+      "trip": "Ecuador and the Galapagos Islands",
+      "activity": "Snorkel with sea lions",
+      "num_votes": 7
+    }
+  ],
+  "trips_destinations": [
+    {
+      "trip": "Highlights of the United Kingdom",
+      "destination": "London"
+    },
+    {
+      "trip": "Highlights of the United Kingdom",
+      "destination": "Edinburgh"
+    },
+    {
+      "trip": "A Week in Italy: Venice, Florence, and Rome",
+      "destination": "Venice"
+    },
+    {
+      "trip": "A Week in Italy: Venice, Florence, and Rome",
+      "destination": "Rome"
+    },
+    {
+      "trip": "Egypt and Nile River Cruise",
+      "destination": "Giza"
+    },
+    {
+      "trip": "Ecuador and the Galapagos Islands",
+      "destination": "Santa Cruz Island"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "On the Fly API: trips, destinations, and activities for CodePath WEB103 Unit 5 lab",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx nodemon server.js",
+    "reset": "node config/reset.js"
+  },
+  "author": "Bhargav Chintam",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.7",
+    "express": "^4.22.3",
+    "nodemon": "^3.1.14",
+    "pg": "^8.23.1"
+  }
+}
