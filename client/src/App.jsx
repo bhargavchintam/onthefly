@@ -1,0 +1,95 @@
+import './App.css';
+import { useState, useEffect } from 'react';
+import { Link, useRoutes } from 'react-router'
+import ReadTrips from './pages/ReadTrips'
+import CreateTrip from './pages/CreateTrip'
+import EditTrip from './pages/EditTrip'
+import CreateDestination from './pages/CreateDestination';
+import ReadDestinations from './pages/ReadDestinations'
+import TripDetails from './pages/TripDetails'
+import CreateActivity from './pages/CreateActivity';
+import AddToTrip from './pages/AddToTrip';
+
+
+const App = () => {
+  
+  const [trips, setTrips] = useState([]);
+  const [destinations, setDestinations] = useState([]);
+
+  // Runs once after the first render (empty dependency list). Both lists are
+  // loaded here, at the top of the app, and handed down to the pages as props.
+  // fetch() defaults to a GET request. The relative URL goes through the Vite proxy
+  // in development (see vite.config.js). https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+  useEffect(() => {
+    const fetchTrips = async () => {
+      const response = await fetch('/api/trips')
+      const data = await response.json()
+      setTrips(data)
+    }
+
+    const fetchDestinations = async () => {
+      const response = await fetch('/api/destinations')
+      const data = await response.json()
+      setDestinations(data)
+    }
+
+    fetchTrips()
+    fetchDestinations()
+  }, []);
+
+  // Sets up routes
+  let element = useRoutes([
+    {
+      path: "/",
+      element:<ReadTrips data={trips}/>
+    },
+    {
+      path:"/trip/new",
+      element: <CreateTrip />
+    },
+    {
+      path:"/edit/:id",
+      element: <EditTrip data={trips} />
+    },
+    {
+      path:"/destinations",
+      element: <ReadDestinations data={destinations} />
+    },
+    {
+      path:"/trip/get/:id",
+      element: <TripDetails data={trips} />
+    },
+    {
+      path:"/destination/new",
+      element: <CreateDestination />
+    },
+    {
+      path:"/activity/create/:trip_id",
+      element: <CreateActivity />
+    },
+    {
+      path:"/destinations/add/:destination_id",
+      element: <AddToTrip data={trips}/>
+    }
+  ]);
+
+  
+  return ( 
+
+    <div className="App">
+
+      <div className="header">
+
+        <h1>On The Fly ✈️</h1>
+        <Link to="/"><button className="headerBtn">Explore Trips</button></Link>
+        <Link to="/destinations"><button className="headerBtn">Explore Destinations</button></Link>
+        <Link to="/trip/new"><button className="headerBtn"> + Add Trip </button></Link>
+        <Link to="/destination/new"><button className="headerBtn"> + Add Destination </button></Link>
+      </div>
+        {element}
+    </div>
+
+  );
+}
+
+export default App;
