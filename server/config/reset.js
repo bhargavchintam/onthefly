@@ -90,10 +90,12 @@ const createUsersTable = async () => {
     await pool.query(`
         CREATE TABLE IF NOT EXISTS users (
             id serial PRIMARY KEY,
-            githubid integer NOT NULL,
+            githubid integer NOT NULL UNIQUE,
             username varchar(100) NOT NULL,
             avatarurl varchar(500) NOT NULL,
-            accesstoken varchar(500) NOT NULL
+            accesstoken varchar(500) NOT NULL,
+            bio varchar(280) NOT NULL DEFAULT '',
+            location varchar(80) NOT NULL DEFAULT ''
         )
     `)
     console.log('🎉 users table created')

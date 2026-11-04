@@ -1,0 +1,25 @@
+.Login {
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.Login h1 {
+    font-size: calc(24px + 3vmin);
+    margin-bottom: 0;
+}
+
+.Login .tagline {
+    font-size: calc(10px + 1vmin);
+    margin: 10px 0 30px;
+}
+
+.Login .login-error {
+    color: #b00020;
+    font-size: calc(10px + 1vmin);
+    margin: 0 0 20px;
+}

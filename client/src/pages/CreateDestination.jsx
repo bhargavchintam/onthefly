@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { request } from '../api'
 import './CreateDestination.css'
 
 const CreateDestination = () => {
@@ -29,7 +30,7 @@ const CreateDestination = () => {
             body: JSON.stringify(destination)
         }
 
-        await fetch('/api/destinations', options)
+        await request('/api/destinations', options)
         window.location.href = '/destinations'
     }
 

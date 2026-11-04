@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { request } from '../api'
 import './CreateTrip.css'
 
 const CreateTrip = () => {
@@ -33,7 +34,7 @@ const CreateTrip = () => {
 
         // Wait for the server to answer before leaving the page, so the new trip
         // is already in the database when the home page fetches the list again.
-        await fetch('/api/trips', options)
+        await request('/api/trips', options)
         window.location.href = '/'
     }
 

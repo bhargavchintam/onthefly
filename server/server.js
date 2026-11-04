@@ -1,27 +1,76 @@
 import express from 'express'
 import cors from 'cors'
+import passport from 'passport'
+import session from 'express-session'
 
+import { GitHub } from './config/auth.js'
+import authRoutes from './routes/auth.js'
 import tripRoutes from './routes/trips.js'
 import activityRoutes from './routes/activities.js'
 import destinationRoutes from './routes/destinations.js'
 import tripDestinationRoutes from './routes/tripsDestinations.js'
+import usersTripsRoutes from './routes/usersTrips.js'
+import userRoutes from './routes/users.js'
 
 // server/.env is loaded by config/database.js, which the routers import first.
 const app = express()
 
-// Middleware runs on every request before the routes: parse JSON bodies, allow
-// cross-origin requests (the React client will run on a different port).
+const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173'
+
+// Middleware runs on every request before the routes, in this order.
 app.use(express.json())
-app.use(cors())
+
+// Sessions (Unit 8 lab). express-session gives every browser a session id in a
+// cookie named connect.sid and keeps the session data on the server; Passport
+// stores the logged-in user inside that session. resave: false only writes the
+// session back when something changed; saveUninitialized: true saves a new
+// session even before anything is stored in it, which is what the lab asks for.
+// https://github.com/expressjs/session
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'codepath',
+    resave: false,
+    saveUninitialized: true
+}))
+
+// CORS with credentials: the React client on another port sends the session
+// cookie with fetch(..., { credentials: 'include' }), which the browser only
+// allows when the server names that exact origin (not *) and says credentials
+// are welcome. https://expressjs.com/en/resources/middleware/cors.html
+app.use(cors({
+    origin: CLIENT_URL,
+    methods: 'GET,POST,PUT,DELETE,PATCH',
+    credentials: true
+}))
+
+// Passport: initialize() wires it into Express, session() reads the user back
+// out of the session on each request and sets req.user.
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(GitHub)
+
+// What goes into the session when someone logs in (everything but the access
+// token, which was only needed for the GitHub handshake), and what comes back
+// out as req.user on later requests.
+passport.serializeUser((user, done) => {
+    const { accesstoken, ...sessionUser } = user
+    done(null, sessionUser)
+})
+
+passport.deserializeUser((user, done) => {
+    done(null, user)
+})
 
 app.get('/', (req, res) => {
     res.status(200).send('<h1 style="text-align: center; margin-top: 50px;">✈️ On the Fly API</h1>')
 })
 
+app.use('/auth', authRoutes)
 app.use('/api/trips', tripRoutes)
 app.use('/api/activities', activityRoutes)
 app.use('/api/destinations', destinationRoutes)
 app.use('/api/trips-destinations', tripDestinationRoutes)
+app.use('/api/users-trips', usersTripsRoutes)
+app.use('/api/users', userRoutes)
 
 // Any other /api path gets a JSON 404 instead of an HTML page.
 app.use('/api', (req, res) => {

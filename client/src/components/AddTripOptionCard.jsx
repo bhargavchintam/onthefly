@@ -1,4 +1,5 @@
 import { useParams } from 'react-router';
+import { request } from '../api'
 import './Card.css'
 
 
@@ -20,7 +21,7 @@ const AddTripOptionCard = (props) =>  {
       body: JSON.stringify({ trip_id: props.id, destination_id: destination_id })
     }
 
-    await fetch('/api/trips-destinations', options)
+    await request('/api/trips-destinations', options)
     window.location.href = '/trip/get/' + props.id
   }
 

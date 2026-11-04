@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import { request } from '../api'
 import './ActivityBtn.css'
 
 const ActivityBtn = (props) =>  {
@@ -17,7 +18,7 @@ const ActivityBtn = (props) =>  {
       body: JSON.stringify({ num_votes: num_votes + 1 })
     }
 
-    await fetch('/api/activities/' + props.id, options)
+    await request('/api/activities/' + props.id, options)
     // Function form of the setter: always works from the latest state value.
     setNumVotes((num_votes) => num_votes + 1)
   }

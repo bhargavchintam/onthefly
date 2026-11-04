@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router';
+import { request } from '../api'
 import './CreateActivity.css'
 
 const CreateActivity = () => {
@@ -32,7 +33,7 @@ const CreateActivity = () => {
             body: JSON.stringify(activity)
         }
 
-        await fetch('/api/activities/' + trip_id, options)
+        await request('/api/activities/' + trip_id, options)
         window.location.href = '/trip/get/' + trip_id
     }
 

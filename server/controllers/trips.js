@@ -22,6 +22,10 @@ const createTrip = async (req, res) => {
              RETURNING *`,
             [title, description, img_url, num_days, start_date, end_date, total_cost]
         )
+        // Unit 8 lab: whoever is logged in becomes the first traveler on their own trip.
+        if (req.user) {
+            await pool.query('INSERT INTO trips_users (trip_id, user_id) VALUES ($1, $2)', [results.rows[0].id, req.user.id])
+        }
         res.status(201).json(results.rows[0])
     } catch (error) {
         handleError(res, error, 'createTrip')

@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import { useParams } from 'react-router';
+import { request } from '../api'
 import './EditTrip.css'
 
 const EditTrip = ({data}) => {
@@ -42,7 +43,7 @@ const EditTrip = ({data}) => {
             body: JSON.stringify(post)
         }
 
-        await fetch('/api/trips/' + id, options)
+        await request('/api/trips/' + id, options)
         window.location.href = '/'
     }
 
@@ -55,7 +56,7 @@ const EditTrip = ({data}) => {
             method: 'DELETE'
         }
 
-        await fetch('/api/trips/' + id, options)
+        await request('/api/trips/' + id, options)
         window.location.href = '/'
     }
 
