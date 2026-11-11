@@ -17,6 +17,18 @@ const app = express()
 
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173'
 
+// Unit 9 lab: on Render the client (a static site) and the server (a web
+// service) have different addresses, so the browser treats them as two sites.
+// A cookie only travels between two sites when it says sameSite: 'none', and
+// browsers only accept that on a cookie marked secure (HTTPS). Locally both
+// run on localhost over plain HTTP, so the cookie keeps its defaults there.
+const crossSite = CLIENT_URL.startsWith('https://')
+
+// Render forwards requests through a proxy over HTTP. This tells Express to
+// read the X-Forwarded-Proto header, so req.secure is true and express-session
+// agrees to set the secure cookie. https://expressjs.com/en/guide/behind-proxies.html
+app.set('trust proxy', 1)
+
 // Middleware runs on every request before the routes, in this order.
 app.use(express.json())
 
@@ -29,7 +41,8 @@ app.use(express.json())
 app.use(session({
     secret: process.env.SESSION_SECRET || 'codepath',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: crossSite ? { sameSite: 'none', secure: true } : {}
 }))
 
 // CORS with credentials: the React client on another port sends the session

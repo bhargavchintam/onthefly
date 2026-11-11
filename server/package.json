@@ -5,7 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "npx nodemon server.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "reset": "node config/reset.js"
   },
   "author": "Bhargav Chintam",

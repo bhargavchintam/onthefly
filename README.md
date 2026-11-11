@@ -1,6 +1,26 @@
 # On the Fly
 
-CodePath WEB103 lab, Parts 1 to 3: a trip planner with an Express API (`server/`) and a React client (`client/`). The PostgreSQL database has six tables: `trips`, `destinations`, `activities` (one trip has many activities), `trips_destinations` (join table, many-to-many), `users` (one row per GitHub account that has signed in), and `trips_users` (join table: who is traveling on which trip).
+CodePath WEB103 lab, Parts 1 to 4: a trip planner with an Express API (`server/`) and a React client (`client/`). The PostgreSQL database has six tables: `trips`, `destinations`, `activities` (one trip has many activities), `trips_destinations` (join table, many-to-many), `users` (one row per GitHub account that has signed in), and `trips_users` (join table: who is traveling on which trip).
+
+## Part 4 (Unit 9): deployed on Render
+
+Live app: (link goes here once the first deploy is green). Server API: (link goes here).
+
+Two Render services from this one repo, both free: a Web Service for the API (root directory `server`, build `npm install`, start `npm start`, which is `node server.js`) and a Static Site for the client (root directory `client`, build `npm install; npm run build`, publish directory `dist`). The static site needs one rewrite rule, `/*` to `/index.html`, so a React Router path like `/trip/get/3` still loads the app. The database is the Render PostgreSQL already in use.
+
+The code does not carry the Render addresses; they are environment variables, so the same code runs locally and in production:
+
+| where | variable | value on Render |
+|---|---|---|
+| server | `PGUSER`, `PGPASSWORD`, `PGHOST`, `PGPORT`, `PGDATABASE` | the Render PostgreSQL values (paste `server/.env`) |
+| server | `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `SESSION_SECRET` | the same as locally |
+| server | `GITHUB_CALLBACK_URL` | the web service URL plus `/auth/github/callback` |
+| server | `CLIENT_URL` | the static site URL |
+| client | `VITE_API_URL` | the web service URL (read at build time) |
+
+The GitHub OAuth app gets the same two URLs: Homepage URL is the static site, Authorization callback URL is the web service plus `/auth/github/callback`.
+
+Two server changes make the login work across the two addresses (`server/server.js`). `app.set('trust proxy', 1)` tells Express that Render's proxy received the request over HTTPS, and when `CLIENT_URL` starts with `https://` the session cookie is sent with `sameSite: 'none'` and `secure: true`, because the browser only sends a cookie to a different site when the cookie allows it, and only accepts that over HTTPS. Locally the cookie keeps its defaults. Test the live login in a normal Chrome window: Safari and Chrome Incognito block cookies between sites.
 
 ## Part 3 walkthrough (Unit 8): login with GitHub
 
@@ -31,7 +51,7 @@ cd server
 cp .env.example .env     # fill in the Render PostgreSQL values and the GitHub OAuth values
 npm install
 npm run reset            # creates the tables and loads the seed data (run on purpose, never on start)
-npm start                # nodemon on http://localhost:3001
+npm run dev              # nodemon on http://localhost:3001 (npm start runs plain node, as on Render)
 ```
 
 ```
