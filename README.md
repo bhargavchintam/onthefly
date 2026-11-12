@@ -4,7 +4,7 @@ CodePath WEB103 lab, Parts 1 to 4: a trip planner with an Express API (`server/`
 
 ## Part 4 (Unit 9): deployed on Render
 
-Live app: (link goes here once the first deploy is green). Server API: (link goes here).
+Live app: https://onthefly-client-evka.onrender.com (sign in with GitHub). Server API: https://onthefly-server.onrender.com (for example `/api/trips`). Both run on the free plan, so the first request after a quiet spell can take up to a minute while the server wakes up.
 
 Two Render services from this one repo, both free: a Web Service for the API (root directory `server`, build `npm install`, start `npm start`, which is `node server.js`) and a Static Site for the client (root directory `client`, build `npm install; npm run build`, publish directory `dist`). The static site needs one rewrite rule, `/*` to `/index.html`, so a React Router path like `/trip/get/3` still loads the app. The database is the Render PostgreSQL already in use.
 
